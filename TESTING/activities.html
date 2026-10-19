@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0d14">
+    <title>Activities | PLAYER.TWO</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0b0d14;
+            --panel: #121621;
+            --panel-light: #171d2b;
+            --text: #f3f5fb;
+            --muted: #9ba4b8;
+            --accent: #a78bfa;
+            --cyan: #67e8f9;
+            --line: rgba(255, 255, 255, 0.1);
+            --danger: #fda4af;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background:
+                radial-gradient(ellipse at 82% 0%, rgba(103, 232, 249, 0.08), transparent 32rem),
+                radial-gradient(ellipse at 18% 32%, rgba(167, 139, 250, 0.08), transparent 34rem),
+                var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page {
+            width: min(100% - 40px, 1000px);
+            margin: 0 auto;
+            padding: 26px 0 54px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+            font-size: 1.02rem;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 1px solid rgba(167, 139, 250, 0.45);
+            border-radius: 12px;
+            background: rgba(167, 139, 250, 0.13);
+            color: var(--accent);
+        }
+
+        .back-link {
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            color: var(--muted);
+            font-size: 0.86rem;
+            text-decoration: none;
+        }
+
+        .back-link:hover,
+        .back-link:focus-visible {
+            border-color: rgba(103, 232, 249, 0.45);
+            color: var(--text);
+            outline: none;
+        }
+
+        main {
+            padding-top: 40px;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--cyan);
+            font-size: 0.73rem;
+            font-weight: 750;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1.08;
+        }
+
+        .intro {
+            max-width: 650px;
+            margin: 14px 0 0;
+            color: var(--muted);
+        }
+
+        .sharing-note {
+            margin: 24px 0 0;
+            padding: 13px 15px;
+            border-left: 2px solid var(--cyan);
+            background: rgba(103, 232, 249, 0.06);
+            color: #c4cadd;
+            font-size: 0.84rem;
+        }
+
+        .sharing-note strong {
+            color: var(--text);
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .activity-slot {
+            min-width: 0;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: rgba(18, 22, 33, 0.82);
+        }
+
+        .slot-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            margin: 0 0 14px;
+            font-size: 1rem;
+        }
+
+        .slot-number {
+            color: var(--cyan);
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .slot-form {
+            display: grid;
+            gap: 10px;
+        }
+
+        .field {
+            display: grid;
+            gap: 5px;
+            min-width: 0;
+        }
+
+        label {
+            color: #c4cadd;
+            font-size: 0.76rem;
+            font-weight: 650;
+        }
+
+        input {
+            width: 100%;
+            min-height: 40px;
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: #0d111b;
+            color: var(--text);
+            font: inherit;
+            font-size: 0.84rem;
+        }
+
+        input:focus-visible {
+            border-color: var(--cyan);
+            outline: 2px solid rgba(103, 232, 249, 0.18);
+            outline-offset: 1px;
+        }
+
+        button {
+            min-height: 40px;
+            padding: 8px 12px;
+            border: 1px solid transparent;
+            border-radius: 7px;
+            background: var(--accent);
+            color: #151021;
+            font: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover,
+        button:focus-visible {
+            filter: brightness(1.08);
+            outline: 2px solid rgba(167, 139, 250, 0.32);
+            outline-offset: 2px;
+        }
+
+        .slot-result {
+            min-height: 24px;
+            margin: 10px 0 0;
+            font-size: 0.84rem;
+        }
+
+        .slot-result a {
+            color: var(--cyan);
+            overflow-wrap: anywhere;
+            text-underline-offset: 3px;
+        }
+
+        .slot-placeholder {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .save-status {
+            min-height: 1.4em;
+            margin: 12px 2px 0;
+            color: var(--muted);
+            font-size: 0.76rem;
+        }
+
+        @media (max-width: 650px) {
+            .page {
+                width: min(100% - 32px, 1000px);
+                padding-top: 18px;
+            }
+
+            main {
+                padding-top: 30px;
+            }
+
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="topbar">
+            <a class="brand" href="TESTING.html" aria-label="PLAYER.TWO home">
+                <span class="brand-mark" aria-hidden="true">✦</span>
+                <span>PLAYER.TWO</span>
+            </a>
+            <a class="back-link" href="TESTING.html">← Home</a>
+        </header>
+
+        <main>
+            <p class="eyebrow">Study links · Sorted by subject</p>
+            <h1>Activities</h1>
+            <p class="intro">Four places for your subject work. Add a title and a share link for each activity.</p>
+            <p class="sharing-note"><strong>For your teacher to open a file:</strong> upload it to your school drive or another shared service, set the link so your teacher can view it, then paste that share link below. Saved slots stay in this browser and will not appear on your teacher's device; sharing the slots between devices requires a hosted page with shared storage.</p>
+
+            <div class="activity-grid" id="activity-grid">
+                <article class="activity-slot" data-slot="1">
+                    <h2 class="slot-heading">Activity 1 <span class="slot-number">01 / 04</span></h2>
+                    <form class="slot-form">
+                        <div class="field"><label for="subject-1">Subject</label><input id="subject-1" name="subject" maxlength="60" placeholder="e.g. Science" required></div>
+                        <div class="field"><label for="title-1">Activity title</label><input id="title-1" name="title" maxlength="100" placeholder="e.g. Lab report" required></div>
+                        <div class="field"><label for="url-1">Teacher share link</label><input id="url-1" name="url" type="url" placeholder="https://..." required></div>
+                        <button type="submit">Save activity</button>
+                    </form>
+                    <p class="slot-result slot-placeholder">No activity saved</p>
+                </article>
+                <article class="activity-slot" data-slot="2">
+                    <h2 class="slot-heading">Activity 2 <span class="slot-number">02 / 04</span></h2>
+                    <form class="slot-form">
+                        <div class="field"><label for="subject-2">Subject</label><input id="subject-2" name="subject" maxlength="60" placeholder="e.g. English" required></div>
+                        <div class="field"><label for="title-2">Activity title</label><input id="title-2" name="title" maxlength="100" placeholder="e.g. Essay draft" required></div>
+                        <div class="field"><label for="url-2">Teacher share link</label><input id="url-2" name="url" type="url" placeholder="https://..." required></div>
+                        <button type="submit">Save activity</button>
+                    </form>
+                    <p class="slot-result slot-placeholder">No activity saved</p>
+                </article>
+                <article class="activity-slot" data-slot="3">
+                    <h2 class="slot-heading">Activity 3 <span class="slot-number">03 / 04</span></h2>
+                    <form class="slot-form">
+                        <div class="field"><label for="subject-3">Subject</label><input id="subject-3" name="subject" maxlength="60" placeholder="e.g. History" required></div>
+                        <div class="field"><label for="title-3">Activity title</label><input id="title-3" name="title" maxlength="100" placeholder="e.g. Source analysis" required></div>
+                        <div class="field"><label for="url-3">Teacher share link</label><input id="url-3" name="url" type="url" placeholder="https://..." required></div>
+                        <button type="submit">Save activity</button>
+                    </form>
+                    <p class="slot-result slot-placeholder">No activity saved</p>
+                </article>
+                <article class="activity-slot" data-slot="4">
+                    <h2 class="slot-heading">Activity 4 <span class="slot-number">04 / 04</span></h2>
+                    <form class="slot-form">
+                        <div class="field"><label for="subject-4">Subject</label><input id="subject-4" name="subject" maxlength="60" placeholder="e.g. Maths" required></div>
+                        <div class="field"><label for="title-4">Activity title</label><input id="title-4" name="title" maxlength="100" placeholder="e.g. Practice questions" required></div>
+                        <div class="field"><label for="url-4">Teacher share link</label><input id="url-4" name="url" type="url" placeholder="https://..." required></div>
+                        <button type="submit">Save activity</button>
+                    </form>
+                    <p class="slot-result slot-placeholder">No activity saved</p>
+                </article>
+            </div>
+            <p class="save-status" id="save-status" role="status" aria-live="polite"></p>
+        </main>
+    </div>
+
+    <script>
+        const storageKey = "playerTwoActivitySlots";
+        const saveStatus = document.querySelector("#save-status");
+        let storageAvailable = true;
+        let savedSlots = {};
+
+        try {
+            const storedSlots = localStorage.getItem(storageKey);
+            if (storedSlots) {
+                const parsedSlots = JSON.parse(storedSlots);
+                if (parsedSlots && typeof parsedSlots === "object" && !Array.isArray(parsedSlots)) {
+                    savedSlots = parsedSlots;
+                }
+            }
+        } catch {
+            storageAvailable = false;
+        }
+
+        function updateStatus(message) {
+            saveStatus.textContent = storageAvailable
+                ? message || "Your four activity slots are saved in this browser."
+                : "Browser storage is unavailable; saved links will last until this page closes.";
+        }
+
+        function renderSlot(slot, activity) {
+            const result = slot.querySelector(".slot-result");
+            result.replaceChildren();
+            result.className = "slot-result";
+
+            if (!activity) {
+                result.classList.add("slot-placeholder");
+                result.textContent = "No activity saved";
+                return;
+            }
+
+            const link = document.createElement("a");
+            link.href = activity.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = `Open ${activity.title} ↗`;
+            result.append(link);
+        }
+
+        function saveSlots() {
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(savedSlots));
+                storageAvailable = true;
+            } catch {
+                storageAvailable = false;
+            }
+            updateStatus();
+        }
+
+        for (const slot of document.querySelectorAll(".activity-slot")) {
+            const slotNumber = slot.dataset.slot;
+            const activity = savedSlots[slotNumber];
+            if (activity) {
+                slot.querySelector('[name="subject"]').value = activity.subject;
+                slot.querySelector('[name="title"]').value = activity.title;
+                slot.querySelector('[name="url"]').value = activity.url;
+            }
+            renderSlot(slot, activity);
+
+            slot.querySelector(".slot-form").addEventListener("submit", (event) => {
+                event.preventDefault();
+                const formData = new FormData(event.currentTarget);
+                const subject = formData.get("subject").trim();
+                const title = formData.get("title").trim();
+                const rawUrl = formData.get("url").trim();
+                let url;
+
+                try {
+                    url = new URL(rawUrl);
+                } catch {
+                    updateStatus("Enter a valid share link starting with https:// or http://.");
+                    return;
+                }
+
+                if (url.protocol !== "https:" && url.protocol !== "http:") {
+                    updateStatus("Share links must use http:// or https://.");
+                    return;
+                }
+
+                const savedActivity = { subject, title, url: url.href };
+                savedSlots[slotNumber] = savedActivity;
+                saveSlots();
+                renderSlot(slot, savedActivity);
+                updateStatus(`Activity ${slotNumber} saved in this browser.`);
+            });
+        }
+
+        updateStatus();
+    </script>
+</body>
+</html>

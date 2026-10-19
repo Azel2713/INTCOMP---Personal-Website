@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0d14">
+    <title>About Andrey | PLAYER.TWO</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0b0d14;
+            --panel: #121621;
+            --panel-light: #171d2b;
+            --text: #f3f5fb;
+            --muted: #9ba4b8;
+            --accent: #a78bfa;
+            --cyan: #67e8f9;
+            --line: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background:
+                radial-gradient(ellipse at 80% 0%, rgba(103, 232, 249, 0.08), transparent 32rem),
+                radial-gradient(ellipse at 30% 30%, rgba(167, 139, 250, 0.08), transparent 35rem),
+                var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            width: min(100% - 40px, 960px);
+            margin: 0 auto;
+            padding: 28px 0 52px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.02rem;
+            font-weight: 750;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 1px solid rgba(167, 139, 250, 0.45);
+            border-radius: 12px;
+            background: rgba(167, 139, 250, 0.13);
+            color: var(--accent);
+            font-size: 1.15rem;
+        }
+
+        .back-link {
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .back-link:hover,
+        .back-link:focus-visible {
+            border-color: rgba(167, 139, 250, 0.55);
+            color: var(--text);
+            outline: none;
+        }
+
+        main {
+            padding-top: 42px;
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            color: var(--cyan);
+            font-size: 0.73rem;
+            font-weight: 750;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            line-height: 1.06;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .intro {
+            max-width: 700px;
+            margin: 18px 0 0;
+            color: #b2bbcc;
+            font-size: 1.02rem;
+        }
+
+        section {
+            margin-top: 46px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 1.35rem;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .bio {
+            max-width: 740px;
+            margin: 0;
+            color: #b2bbcc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            min-height: 145px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(18, 22, 33, 0.78);
+        }
+
+        .card-icon {
+            display: inline-grid;
+            width: 36px;
+            height: 36px;
+            margin-bottom: 11px;
+            place-items: center;
+            border-radius: 10px;
+            background: rgba(167, 139, 250, 0.12);
+            color: var(--accent);
+        }
+
+        .card h3,
+        .now-playing h3 {
+            margin: 0 0 5px;
+            font-size: 0.95rem;
+        }
+
+        .card p,
+        .now-playing p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .now-playing {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px;
+            border: 1px solid rgba(103, 232, 249, 0.15);
+            border-radius: 12px;
+            background: linear-gradient(100deg, rgba(103, 232, 249, 0.07), rgba(18, 22, 33, 0.8) 55%);
+        }
+
+        .game-art {
+            display: grid;
+            flex: 0 0 54px;
+            height: 54px;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #1c3450, #39305d);
+            color: var(--cyan);
+            font-size: 1.35rem;
+        }
+
+        blockquote {
+            margin: 0;
+            padding: 21px 24px;
+            border-left: 2px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            background: rgba(167, 139, 250, 0.06);
+            color: #d4d2e4;
+        }
+
+        cite {
+            display: block;
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-style: normal;
+        }
+
+        footer {
+            margin-top: 46px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            color: #727d91;
+            font-size: 0.76rem;
+        }
+
+        @media (max-width: 650px) {
+            .page {
+                width: min(100% - 32px, 960px);
+                padding-top: 18px;
+            }
+
+            main {
+                padding-top: 32px;
+            }
+
+            section {
+                margin-top: 36px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                min-height: auto;
+            }
+
+            .section-heading {
+                align-items: start;
+                flex-direction: column;
+                gap: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="topbar">
+            <a class="brand" href="TESTING.html" aria-label="PLAYER.TWO home">
+                <span class="brand-mark" aria-hidden="true">✦</span>
+                <span>PLAYER.TWO</span>
+            </a>
+            <a class="back-link" href="TESTING.html">← Home</a>
+        </header>
+
+        <main>
+            <p class="eyebrow">Character bio · Level: always learning</p>
+            <h1>A little <span>about me.</span></h1>
+            <p class="intro">
+                I enjoy good stories, clever game design, and conversations that take an unexpected
+                turn. Games remind me that every challenge has more than one approach, and that
+                sometimes the best thing to do is pause, look around, and enjoy the world you're in.
+            </p>
+
+            <section aria-labelledby="interests-title">
+                <div class="section-heading">
+                    <h2 id="interests-title">Things I’m into</h2>
+                    <p>My current side quests</p>
+                </div>
+                <div class="grid">
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">🎮</span>
+                        <h3>Gaming</h3>
+                        <p>Immersive worlds, co-op adventures, and games with a story to tell.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">📚</span>
+                        <h3>Reading & ideas</h3>
+                        <p>Thoughtful books, curious questions, and learning something new.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon" aria-hidden="true">🎧</span>
+                        <h3>Music & making</h3>
+                        <p>Soundtracks for focus, creative experiments, and little projects.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section aria-labelledby="games-title">
+                <div class="section-heading">
+                    <h2 id="games-title">On my screen</h2>
+                    <p>Now playing</p>
+                </div>
+                <div class="now-playing">
+                    <div class="game-art" aria-hidden="true">▶</div>
+                    <div>
+                        <h3>One more quest...</h3>
+                        <p>Usually found exploring, collecting side quests, and forgetting the time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-labelledby="thoughts-title">
+                <div class="section-heading">
+                    <h2 id="thoughts-title">A thought to take with you</h2>
+                    <p>Small philosophy corner</p>
+                </div>
+                <blockquote>
+                    “You don't have to know the whole map to take the next step.”
+                    <cite>— A reminder for the main quest and all the side quests</cite>
+                </blockquote>
+            </section>
+        </main>
+
+        <footer>Made with curiosity, a little respawn energy, and plain HTML & CSS.</footer>
+    </div>
+</body>
+</html>
