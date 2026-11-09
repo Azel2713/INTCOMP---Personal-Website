@@ -230,6 +230,23 @@ main {
     max-width: 740px;
 }
 
+.back-link {
+    display: inline-block;
+    margin: 0 0 18px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--text);
+    font-size: 0.85rem;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+    border-color: rgba(167, 139, 250, 0.55);
+    outline: none;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -304,6 +321,37 @@ a.card:focus-visible {
 .now-playing p {
     margin: 3px 0 0;
     font-size: 0.82rem;
+}
+
+.games-section {
+    margin-top: 40px;
+}
+
+.game-list {
+    display: grid;
+    gap: 16px;
+}
+
+.game-table h3 {
+    margin: 0 0 14px;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+}
+
+.game-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.game-photos img {
+    display: block;
+    flex: 0 1 260px;
+    width: 260px;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 9px;
 }
 
 .quote {
